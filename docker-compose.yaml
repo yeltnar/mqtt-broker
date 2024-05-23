@@ -1,0 +1,20 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    volumes:
+      - type: bind
+        source: ./config/
+        target: /mosquitto/config/
+      - type: bind
+        source: ./log/
+        target: /mosquitto/log/
+      - type: bind 
+        source: ./data/
+        target: /mosquitto/data/
+    # using host mode so it can start with no password
+    network_mode: host 
+    ports:
+      - 1883:1883
+      - 9001:9001
+      - 9000:9000
+
